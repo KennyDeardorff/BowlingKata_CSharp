@@ -12,14 +12,23 @@ namespace BowlingKata
         {
             var rollIndex = 0;
 
-            for (var frameIndex = 1; frameIndex <= 3; frameIndex++)
+            for (var frameIndex = 1; frameIndex <= 8; frameIndex++)
             {
                 var frame = new Frame();
                 frame.Rolls.Add(rolls[rollIndex++]);
-                frame.Rolls.Add(rolls[rollIndex++]);
 
                 if (frame.Score == 10)
+                {
                     frame.AdditionalRolls.Add(rolls[rollIndex]);
+                    frame.AdditionalRolls.Add(rolls[rollIndex + 1]);
+                }
+                else
+                {
+                    frame.Rolls.Add(rolls[rollIndex++]);
+
+                    if (frame.Score == 10)
+                        frame.AdditionalRolls.Add(rolls[rollIndex]);
+                }
 
                 Frames.Add(frame);
             }
