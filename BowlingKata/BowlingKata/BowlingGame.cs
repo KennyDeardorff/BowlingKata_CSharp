@@ -15,8 +15,10 @@ namespace BowlingKata
             for (int frameIndex = 1; frameIndex <= 1; frameIndex++)
             {
                 var frame = new Frame();
-                frame.Rolls.Add(rollIndex++);
-                frame.Rolls.Add(rollIndex++);
+                frame.Rolls.Add(rolls[rollIndex++]);
+                frame.Rolls.Add(rolls[rollIndex++]);
+
+                Frames.Add(frame);
             }
         }
 
