@@ -12,11 +12,14 @@ namespace BowlingKata
         {
             var rollIndex = 0;
 
-            for (int frameIndex = 1; frameIndex <= 1; frameIndex++)
+            for (var frameIndex = 1; frameIndex <= 3; frameIndex++)
             {
                 var frame = new Frame();
                 frame.Rolls.Add(rolls[rollIndex++]);
                 frame.Rolls.Add(rolls[rollIndex++]);
+
+                if (frame.Score == 10)
+                    frame.AdditionalRolls.Add(rolls[rollIndex]);
 
                 Frames.Add(frame);
             }
@@ -26,12 +29,12 @@ namespace BowlingKata
         {
             var output = new List<string>();
             var total = 0;
-            var frameIndex = 0;
+            var frameIndex = 1;
 
             foreach (var frame in Frames)
             {
-                total += frame.Rolls.Sum();
-                output.Add($"{frameIndex + 1}) {frame} => {total}");
+                total += frame.Score;
+                output.Add($"{frameIndex++}) {frame} => {total}");
             }
 
             return string.Join(Environment.NewLine, output);
@@ -41,10 +44,13 @@ namespace BowlingKata
     public class Frame
     {
         public List<int> Rolls { get; } = new List<int>();
+        public List<int> AdditionalRolls { get; } = new List<int>();
+
+        public int Score => Rolls.Sum() + AdditionalRolls.Sum();
 
         public override string ToString()
         {
-            return $"{string.Join(", ", Rolls)} [{Rolls.Sum()}]";
+            return $"{string.Join(", ", Rolls)} [{Score}]";
         }
     }
 }
