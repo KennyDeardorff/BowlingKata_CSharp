@@ -16,18 +16,18 @@ namespace BowlingKata
             {
                 var frame = new Frame();
                 frame.Rolls.Add(rolls[rollIndex++]);
+                frame.Rolls.Add(rolls[rollIndex++]);
 
                 if (frame.IsStrike)
                 {
+                    rollIndex--;
+                    frame.Rolls.RemoveAt(1);
                     frame.AdditionalRolls.Add(rolls[rollIndex]);
                     frame.AdditionalRolls.Add(rolls[rollIndex + 1]);
                 }
-                else
+                else if (frame.IsSpare)
                 {
-                    frame.Rolls.Add(rolls[rollIndex++]);
-
-                    if (frame.IsSpare)
-                        frame.AdditionalRolls.Add(rolls[rollIndex]);
+                    frame.AdditionalRolls.Add(rolls[rollIndex]);
                 }
 
                 Frames.Add(frame);
