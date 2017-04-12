@@ -6,7 +6,7 @@ namespace BowlingKata.Tests
 {
     [TestClass]
     [UseReporter(typeof(DiffReporter))]
-    public class UnitTest1
+    public class BowlingTests
     {
         [TestMethod]
         public void TestMethod1()

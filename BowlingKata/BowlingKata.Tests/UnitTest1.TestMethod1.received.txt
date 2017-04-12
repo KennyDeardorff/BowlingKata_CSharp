@@ -1,1 +1,1 @@
-﻿BowlingKata.BowlingGame
+﻿1) 5, 3 [8] => 8
