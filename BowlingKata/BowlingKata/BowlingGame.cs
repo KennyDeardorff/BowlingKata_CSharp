@@ -17,7 +17,7 @@ namespace BowlingKata
                 var frame = new Frame();
                 frame.Rolls.Add(rolls[rollIndex++]);
 
-                if (frame.Score == 10)
+                if (frame.IsStrike)
                 {
                     frame.AdditionalRolls.Add(rolls[rollIndex]);
                     frame.AdditionalRolls.Add(rolls[rollIndex + 1]);
@@ -26,7 +26,7 @@ namespace BowlingKata
                 {
                     frame.Rolls.Add(rolls[rollIndex++]);
 
-                    if (frame.Score == 10)
+                    if (frame.IsSpare)
                         frame.AdditionalRolls.Add(rolls[rollIndex]);
                 }
 
@@ -56,6 +56,8 @@ namespace BowlingKata
         public List<int> AdditionalRolls { get; } = new List<int>();
 
         public int Score => Rolls.Sum() + AdditionalRolls.Sum();
+        public bool IsStrike => Rolls.FirstOrDefault() == 10;
+        public bool IsSpare => Rolls.Count == 2 && Rolls.Sum() == 10;
 
         public override string ToString()
         {
